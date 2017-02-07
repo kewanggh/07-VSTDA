@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="UTF-8">
+  <title>VSTDA</title>
+<!-- bower:css -->
+<link rel="stylesheet" href="bower_components/ng-sortable/dist/ng-sortable.css" />
+<!-- endbower -->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<!-- inject:css -->
+<link rel="stylesheet" href="/app/style/style.css">
+<!-- endinject -->
+</head>
+
+<body ng-controller="MainCtrl">
+  <div class="page-header">
+  <h1>Very Simple Todo App</h1>
+
+    <p>In this project you are going to build a sophisticated Todo app using AngularJS that allows users to enter their todo items and prioritize them based on their importance.
+      The app will then allow users to sort their todo items based on the priority, or by alphabetical order.</p>
+    </div>
+
+<div id="left" class="col-md-4">
+<div class="panel panel-primary">
+  <div class="panel-heading">Add Todo Item</div>
+  <div class="panel-body">
+    <form>
+   <div class="form-group">
+     <label for="text">Text</label>
+     <input type="text" class="form-control" id="text" placeholder="Text" ng-model="newItem.text">
+   </div>
+   <div class="form-group">
+     <label for="priority">Priority</label>
+
+      <select id="priority" class="form-control" placeholder="Priority" ng-model="newItem.priority">
+            <option value=3>High</option>
+            <option value=2>Medium</option>
+            <option value=1>Low</option>
+      </select>
+
+   </div>
+ </div>
+<div class="panel-footer">
+   <button type="submit" class="btn btn-default" ng-click="addItem(newItem)">Add Todo</button>
+ </div>
+ </form>
+ </div>
+ </div>
+<div id="right" class="col-md-8">
+<div class="panel panel-primary">
+<div class="panel-heading">
+  <div class="btn-group" role="group" aria-label="...">
+  <button type="button" class="btn btn-default" ng-click="sort('-priority')">Order by highest priority</button>
+  <button type="button" class="btn btn-default" ng-click="sort('priority')">Order by lowest priority</button>
+  <button type="button" class="btn btn-default" ng-click="sort('text')">Order alphabetically</button>
+</div>
+</div>
+<div class="panel-body">
+  <div>
+        <ul as-sortable="board.dragControlListeners" ng-model="items" id="tasks">
+        <li ng-repeat="item in items" as-sortable-item ng-class="as-sortable-item">
+        <div as-sortable-item-handle ng-class="{'important':{{item.priority}} ===
+        3,'medium':{{item.priority}} === 2,'info':{{item.priority}}=== 1}">{{item.text}}</div>
+        </li>
+        </ul>
+    </div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- bower:js -->
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="bower_components/ng-sortable/dist/ng-sortable.js"></script>
+<!-- endbower -->
+
+<!-- inject:js -->
+<script src="/app/app.module.js"></script>
+<script src="/app/vstda.ctrl.js"></script>
+<!-- endinject -->
+</body>
+</html>
