@@ -5,30 +5,23 @@
         .module('myApp')
         .controller('MainCtrl', MainCtrl);
 
-    MainCtrl.$inject = ['$scope', '$filter'];
+    MainCtrl.$inject = ['$filter'];
 
     /* @ngInject */
-    function MainCtrl($scope, $filter) {
+    function MainCtrl($filter) {
       var vm=this;
-      $scope.newItem = [];
-      $scope.items = [];
-      $scope.addItem = function(newItem){
+
+      vm.newItem = [];
+      vm.items = [];
+      vm.addItem = function(newItem){
         newItem.done = false;
-        $scope.items.push(newItem);
-        $scope.newItem = [];
-        console.log($scope.items);
-};
-$scope.sort = function(order){
-  $scope.items = $filter('orderBy')($scope.items, order);
-};
-
-
-        activate();
-
-        function activate() {
-          console.log("hi");
-        }
-
+        vm.items.push(newItem);
+        vm.newItem = [];
+        console.log(vm.items);
+      };
+      vm.sort = function(order){
+      vm.items = $filter('orderBy')(vm.items, order);
+      };
 
     }
 })();
